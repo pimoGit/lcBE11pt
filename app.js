@@ -3,7 +3,8 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.type("html")
+        .send(`<h1>Titolo di una pagina HTML!<h1>`)
 })
 
 app.listen(port, () => {
