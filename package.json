@@ -1,0 +1,14 @@
+{
+  "name": "lcbe11pt",
+  "version": "1.0.0",
+  "description": "progetto di LC di BE per classe 11PT",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "classe 11 PT",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
