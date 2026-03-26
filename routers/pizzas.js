@@ -3,10 +3,13 @@ const express = require('express')
 // estrapolo e uso la parte di router
 const router = express.Router();
 
+// importo dati del menu pizze
+const menuPizze = require('./../data/menu');
+
 // definisco le varie rotte relative alla risorsa specifica
 // index
 router.get('/', function (req, res) {
-    res.send('Lista delle pizze');
+    res.json(menuPizze);
 });
 
 // show
