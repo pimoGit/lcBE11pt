@@ -9,7 +9,14 @@ const menuPizze = require('./../data/menu');
 // definisco le varie rotte relative alla risorsa specifica
 // index
 router.get('/', function (req, res) {
-    res.json(menuPizze);
+
+    // creo oggetto nuovo per la formattazione completa della risposta
+    const menuPizzeCompleto = {
+        numeroPizze: menuPizze.length,
+        listaPizze: menuPizze
+    }
+
+    res.json(menuPizzeCompleto);
 });
 
 // show
