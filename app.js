@@ -9,6 +9,12 @@ app.get('/', (req, res) => {
     res.send("Benvenuto nella API della mia pizzeria");
 })
 
+// rotta di prova per parametro dinamico
+app.get('/pizze/:id', function (req, res) {
+    console.log("Hai cercato la pizza con id: " + req.params.id)
+    res.send("Hai cercato la pizza con id: " + req.params.id)
+})
+
 // rotta menù pizze
 app.get('/menu', (req, res) => {
     const menuPizze = [
