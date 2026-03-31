@@ -81,6 +81,9 @@ function destroy(req, res) {
     // Rimuoviamo la pizza dal menu
     menuPizze.splice(menuPizze.indexOf(pizza), 1);
 
+    console.log(menuPizze);
+
+
     // Restituiamo lo status corretto
     res.sendStatus(204)
 }
