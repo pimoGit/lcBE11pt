@@ -10,10 +10,20 @@ const menuPizze = require('./../data/menu');
 // index
 router.get('/', function (req, res) {
 
+    //Inizialmente, il menu filtrato corrisponde a quello originale
+    let filteredMenu = menuPizze;
+
+    // Se la richiesta contiene un filtro, allora filtriamo il menu
+    if (req.query.ingredient) {
+        filteredMenu = menuPizze.filter(
+            pizza => pizza.ingredients.includes(req.query.ingredient)
+        );
+    }
+
     // creo oggetto nuovo per la formattazione completa della risposta
     const menuPizzeCompleto = {
-        numeroPizze: menuPizze.length,
-        listaPizze: menuPizze
+        numeroPizze: filteredMenu.length,
+        listaPizze: filteredMenu
     }
 
     res.json(menuPizzeCompleto);
