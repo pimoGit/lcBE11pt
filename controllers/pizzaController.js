@@ -50,7 +50,7 @@ function show(req, res) {
 
 function store(req, res) {
     // Creiamo un nuovo id incrementando l'ultimo id presente
-    const newId = menuPizze[menuPizze.length - 1].id + 1;
+    const newId = Date.now();
 
     // Creiamo un nuovo oggetto pizza
     const newPizza = {
