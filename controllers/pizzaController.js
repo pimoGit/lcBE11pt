@@ -102,7 +102,42 @@ function update(req, res) {
 }
 
 function modify(req, res) {
-    res.send('Modifica parziale della pizza ' + req.params.id);
+    // recuperiamo l'id dall' URL e trasformiamolo in numero
+    const id = parseInt(req.params.id)
+
+    // cerchiamo il pizza tramite id
+    const pizza = menuPizze.find(pizza => pizza.id === id);
+
+    // Piccolo controllo
+    if (!pizza) {
+        res.status(404);
+
+        return res.json({
+            error: "Not Found",
+            message: "Pizza non trovata"
+        })
+    }
+
+    const pizzaInviata = req.body;
+
+    // Aggiorniamo la pizza
+    pizzaInviata.name ? pizza.name = pizzaInviata.name : pizza.name = pizza.name;
+
+    // versione estesa 
+    // if(pizzaInviata.name !== undefined) {
+    //     pizza.name = pizzaInviata.name
+    // } else {
+    //      pizza.name = pizza.name
+    // }
+
+    pizzaInviata.image ? pizza.image = pizzaInviata.image : pizza.image = pizza.image;
+    pizzaInviata.ingredients ? pizza.ingredients = pizzaInviata.ingredients : pizza.ingredients = pizza.ingredients;
+
+    // Controlliamo il menu
+    console.log(menuPizze)
+
+    // Restituiamo la pizza appena aggiornata
+    res.json(pizza);
 }
 
 function destroy(req, res) {
