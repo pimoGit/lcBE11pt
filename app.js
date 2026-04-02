@@ -7,6 +7,9 @@ const pizzasRouter = require('./routers/pizzas');
 
 app.use(express.static('public'));
 
+// attivazione body parser per formato json per tutte le rotte	
+app.use(express.json());
+
 // rotta di home
 app.get('/', (req, res) => {
     res.send("Benvenuto nella API della mia pizzeria");
