@@ -8,6 +8,9 @@ const pizzasRouter = require('./routers/pizzas');
 // importo il middleware di checkTime
 const checkTime = require('./middlewares/checkTime');
 
+// importo middleware di gestione errore interno server 500
+const errorsHandler = require('./middlewares/errorsHandler');
+
 app.use(express.static('public'));
 
 // attivazione body parser per formato json per tutte le rotte	
@@ -26,6 +29,10 @@ app.get('/', (req, res) => {
 
 // rotte di CRUD per la risorsa pizze
 app.use("/pizzas", pizzasRouter)
+
+
+// registra globalmente il middleware di gestione errore interno server 500
+app.use(errorsHandler);
 
 
 app.listen(port, () => {
