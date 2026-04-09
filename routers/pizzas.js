@@ -10,14 +10,14 @@ const pizzaController = require('./../controllers/pizzaController');
 const checkTime = require('./../middlewares/checkTime');
 
 // registrazione globale di router specifico
-router.use(checkTime);
+// router.use(checkTime);
 
 // definisco le varie rotte relative alla risorsa specifica
 // index
 router.get('/', pizzaController.index);
 
 // show
-router.get('/:id', pizzaController.show);
+router.get('/:id', checkTime, pizzaController.show);
 
 // store
 router.post('/', pizzaController.store);
@@ -29,7 +29,7 @@ router.put('/:id', pizzaController.update);
 router.patch('/:id', pizzaController.modify);
 
 // destroy
-router.delete('/:id', pizzaController.destroy);
+router.delete('/:id', checkTime, pizzaController.destroy);
 
 // esporto il router per poterlo usare i app
 module.exports = router;
