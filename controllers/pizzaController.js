@@ -27,6 +27,9 @@ function show(req, res) {
     // recuperiamo l'id dall' URL e trasformiamolo in numero
     const id = parseInt(req.params.id)
 
+    // errore a caso
+    // ciao();
+
     // cerchiamo il pizza tramite id
     const pizzaTrovata = menuPizze.find(pizza => pizza.id === id);
 
