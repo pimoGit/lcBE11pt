@@ -6,6 +6,12 @@ const router = express.Router();
 // importo il controller della risorsa pizze
 const pizzaController = require('./../controllers/pizzaController');
 
+// importo il middleware di checkTime
+const checkTime = require('./../middlewares/checkTime');
+
+// registrazione globale di router specifico
+router.use(checkTime);
+
 // definisco le varie rotte relative alla risorsa specifica
 // index
 router.get('/', pizzaController.index);

@@ -17,7 +17,7 @@ app.use(express.json());
 // app.use(checkTime);
 
 // registrazione per router
-app.use("/pizzas", checkTime)
+// app.use("/pizzas", checkTime)
 
 // rotta di home
 app.get('/', (req, res) => {
