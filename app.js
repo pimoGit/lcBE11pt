@@ -14,7 +14,10 @@ app.use(express.static('public'));
 app.use(express.json());
 
 // registrazione globale
-app.use(checkTime);
+// app.use(checkTime);
+
+// registrazione per router
+app.use("/pizzas", checkTime)
 
 // rotta di home
 app.get('/', (req, res) => {
