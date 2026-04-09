@@ -1,10 +1,14 @@
 function checkTime(req, res, next) {
 
     // predniamo data e ora specifica di user
-    const currenTime = new Date().toLocaleString;
+    const currenTime = new Date();
 
-    console.log("sei passato dal middleware di checkTime a:", currenTime);
+    const time = currenTime.toLocaleString();
+
+    console.log("sei passato dal middleware di checkTime a:", time);
 
     // procediamo con risoluzione della richiesta
     next();
 }
+
+module.exports = checkTime;

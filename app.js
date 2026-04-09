@@ -5,10 +5,16 @@ const port = 3000
 // importo il router della risorsa pizze
 const pizzasRouter = require('./routers/pizzas');
 
+// importo il middleware di checkTime
+const checkTime = require('./middlewares/checkTime');
+
 app.use(express.static('public'));
 
 // attivazione body parser per formato json per tutte le rotte	
 app.use(express.json());
+
+// registrazione globale
+app.use(checkTime);
 
 // rotta di home
 app.get('/', (req, res) => {
