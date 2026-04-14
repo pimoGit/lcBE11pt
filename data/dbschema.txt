@@ -3,18 +3,18 @@ definizione tabella libri [copia fisica del libro presente in biblioteca]
 
 Nome TAB : BOOKS
 
-- ID
-- CODICE_LIBRO
-- TITLE
-- AUTHOR
-- POSITION
-- ISBN
+- ID            - BIGINT
+- BOOK_CODE     - CHAR(100)
+- TITLE         - VARCHAR(200)
+- AUTHOR        - VARCHAR(200)
+- POSITION      - CHAR(9)
+- ISBN          - VARCHAR(17)
 - EDITION
 - GENRE
-- CONDITION
-- NOTE
-- YEAR
-- PAGES
+- CONDITION     - VARCHAR(50)
+- NOTE          - TEXT
+- YEAR          - YEAR
+- PAGES         - SMALLINT
 - PLOT
 - AGE_RANGE
 - COVER_TYPE
