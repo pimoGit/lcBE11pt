@@ -1,0 +1,21 @@
+definizione tabella libri [copia fisica del libro presente in biblioteca]
+
+
+Nome TAB : BOOKS
+
+- ID
+- CODICE_LIBRO
+- TITLE
+- AUTHOR
+- POSITION
+- ISBN
+- EDITION
+- GENRE
+- CONDITION
+- NOTE
+- YEAR
+- PAGES
+- PLOT
+- AGE_RANGE
+- COVER_TYPE
+- PUBLISHER
