@@ -3,12 +3,12 @@ definizione tabella libri [copia fisica del libro presente in biblioteca]
 
 Nome TAB : BOOKS
 
-- ID            - BIGINT
-- BOOK_CODE     - CHAR(100)
-- TITLE         - VARCHAR(200)
-- AUTHOR        - VARCHAR(200)
+- ID            - BIGINT        - NOTNULL, AUTO_INCREMENT, UNIQUE       - PK
+- BOOK_CODE     - CHAR(100)     - NOTNULL, DEFAULT(NOCODE)
+- TITLE         - VARCHAR(200)  - NOTNULL
+- AUTHOR        - VARCHAR(200)  - NOTNULL, DEFAULT(UNKWOKN)
 - POSITION      - CHAR(9)
-- ISBN          - VARCHAR(17)
+- ISBN          - VARCHAR(17)   - NOTNULL, DEFAULT(UNKWOKN)
 - EDITION
 - GENRE
 - CONDITION     - VARCHAR(50)
