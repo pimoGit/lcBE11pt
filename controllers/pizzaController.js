@@ -125,30 +125,16 @@ function modify(req, res) {
 
 function destroy(req, res) {
     // recuperiamo l'id dall' URL e trasformiamolo in numero
-    const id = parseInt(req.params.id)
+    const id = req.params.id;
 
-    // cerchiamo il pizza tramite id
-    const pizza = menuPizze.find(pizza => pizza.id === id);
+    // prepariamo la query
+    const sql = 'DELETE FROM pizzas WHERE id = ?';
 
-    // Piccolo controllo
-    if (!pizza) {
-        res.status(404);
-
-        return res.json({
-            status: 404,
-            error: "Not Found",
-            message: "Pizza non trovata"
-        })
-    }
-
-    // Rimuoviamo la pizza dal menu
-    menuPizze.splice(menuPizze.indexOf(pizza), 1);
-
-    console.log(menuPizze);
-
-
-    // Restituiamo lo status corretto
-    res.sendStatus(204)
+    //Eliminiamo la pizza dal menu                       
+    connection.query(sql, [id], (err) => {
+        if (err) return res.status(500).json({ error: 'Failed to delete pizza' });
+        res.sendStatus(204)
+    });
 }
 
 // esportiamo le funzioni per il router
