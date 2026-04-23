@@ -1,26 +1,20 @@
 // importo dati del menu pizze
 const menuPizze = require('./../data/menu');
 
+// Importiamo il file di connessione al database
+const connection = require('../data/db');
+
 // elenco funzioni relative alle rotte della risorsa pizze
 
 function index(req, res) {
-    //Inizialmente, il menu filtrato corrisponde a quello originale
-    let filteredMenu = menuPizze;
+    // prepariamo la query
+    const sql = 'SELECT * FROM pizzas';
 
-    // Se la richiesta contiene un filtro, allora filtriamo il menu
-    if (req.query.ingredient) {
-        filteredMenu = menuPizze.filter(
-            pizza => pizza.ingredients.includes(req.query.ingredient)
-        );
-    }
-
-    // creo oggetto nuovo per la formattazione completa della risposta
-    const menuPizzeCompleto = {
-        numeroPizze: filteredMenu.length,
-        listaPizze: filteredMenu
-    }
-
-    res.json(menuPizzeCompleto);
+    // eseguiamo la query!
+    connection.query(sql, (err, results) => {
+        if (err) return res.status(500).json({ error: 'Database query failed' });
+        res.json(results);
+    });
 }
 
 function show(req, res) {
