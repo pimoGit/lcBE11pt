@@ -56,56 +56,41 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    // Creiamo un nuovo id incrementando l'ultimo id presente
-    const newId = Date.now();
+    //recuperiamo i dati dal corpo della richiesta
+    const { name, image } = req.body;
 
-    // Creiamo un nuovo oggetto pizza
-    const newPizza = {
-        id: newId,
-        name: req.body.name,
-        image: req.body.image,
-        ingredients: req.body.ingredients
-    }
+    // prepariamo la query
+    const sql = 'INSERT INTO pizzas (name, image) VALUES (?, ?)'
 
-    // Aggiungiamo la nuova pizza al menu
-    menuPizze.push(newPizza);
-
-    // controlliamo
-    console.log(menuPizze);
-
-
-    // Restituiamo lo status corretto e la pizza appena creata
-    res.status(201);
-    res.json(newPizza);
+    // eseguiamo la query
+    connection.query(
+        sql,
+        [name, image],
+        (err, results) => {
+            if (err) return res.status(500).json({ error: 'Failed to insert pizza' });
+            res.status(201); // status corretto
+            console.log(results)
+            res.json({ id: results.insertId }); // restituiamo l'id assegnato dal DB
+        }
+    );
 }
 
 function update(req, res) {
-    // recuperiamo l'id dall' URL e trasformiamolo in numero
-    const id = parseInt(req.params.id)
+    // recuperiamo l'id dall' URL
+    const { id } = req.params;
 
-    // cerchiamo il pizza tramite id
-    const pizza = menuPizze.find(pizza => pizza.id === id);
+    // recuperiamo i dati dal body della richiesta
+    const { name, image } = req.body;
 
-    // Piccolo controllo
-    if (!pizza) {
-        res.status(404);
-
-        return res.json({
-            error: "Not Found",
-            message: "Pizza non trovata"
-        })
-    }
-
-    // Aggiorniamo la pizza
-    pizza.name = req.body.name;
-    pizza.image = req.body.image;
-    pizza.ingredients = req.body.ingredients;
-
-    // Controlliamo il menu
-    console.log(menuPizze)
-
-    // Restituiamo la pizza appena aggiornata
-    res.json(pizza);
+    // Prepariamo la query per aggiornare la pizza
+    connection.query(
+        'UPDATE pizzas SET name = ?, image = ? WHERE id = ?',
+        [name, image, id],
+        (err) => {
+            if (err) return res.status(500).json({ error: 'Failed to update pizza' });
+            res.json({ message: 'Pizza updated successfully' });
+        }
+    );
 }
 
 function modify(req, res) {
